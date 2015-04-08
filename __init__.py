@@ -6,9 +6,11 @@
     :license: BSD, see LICENSE for more details.
 """
 from trytond.pool import Pool
+from quickbooks import PayrollAccount
 
 
 def register():
     Pool.register(
+        PayrollAccount,
         module='quickbooks_payroll', type_='model'
     )

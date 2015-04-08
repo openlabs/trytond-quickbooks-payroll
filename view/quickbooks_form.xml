@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<form string="Quickbooks">
+    <label name="account" />
+    <field name="account" />
+    <label name="payroll_item" />
+    <field name="payroll_item" />
+</form>
