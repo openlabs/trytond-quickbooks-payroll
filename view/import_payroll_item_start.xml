@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<form string="Import Payroll Items">
+    <label name="credit_account"/>
+    <field name="credit_account"/>
+    <label name="csv_file"/>
+    <field name="csv_file"/>
+    <field name="message" colspan="4"/>
+</form>
