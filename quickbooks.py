@@ -142,7 +142,7 @@ class ImportPayrollItem(Wizard):
 
         move = Move(
             number=first_row['Num'],
-            date=parser.parse(first_row['Date']),
+            date=parser.parse(first_row['Date']).date(),
             journal=journal,
             lines=[
                 MoveLine(

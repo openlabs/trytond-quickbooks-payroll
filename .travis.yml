@@ -1,12 +1,13 @@
-sudo: false
 language: python
 python:
   - 2.7
-script: make test-$TEST_CMD
+install:
+  - pip install tox 
+script: tox
 env:
-  - TEST_CMD="sqlite"
-  - TEST_CMD="postgres"
-  - TEST_CMD="flake8"
+  - TOXENV=sqlite
+  - TOXENV=postgres
+  - TOXENV=flake8
 notifications:
   email:
   - ci-notify@openlabs.co.in
