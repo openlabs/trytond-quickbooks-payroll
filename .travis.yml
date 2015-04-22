@@ -1,0 +1,13 @@
+language: python
+python:
+  - 2.7
+install:
+  - pip install tox 
+script: tox
+env:
+  - TOXENV=sqlite
+  - TOXENV=postgres
+  - TOXENV=flake8
+notifications:
+  email:
+  - ci-notify@openlabs.co.in

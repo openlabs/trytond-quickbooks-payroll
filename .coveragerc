@@ -1,0 +1,5 @@
+[run]
+source = trytond.modules.quickbooks_payroll
+
+[report]
+omit = */tests/*, */setup.py
