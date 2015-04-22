@@ -42,5 +42,18 @@
             <field name="perm_create" eval="True"/>
             <field name="perm_delete" eval="True"/>
         </record>
+
+        <!-- import payroll item wizard-->
+        <record model="ir.ui.view" id="import_payroll_item_start">
+            <field name="model">quickbooks.wizard_import_payroll_item.start</field>
+            <field name="type">form</field>
+            <field name="name">import_payroll_item_start</field>
+        </record>
+        <record model="ir.action.wizard" id="wizard_import_payroll_item">
+            <field name="name">Import Payroll Items</field>
+            <field name="wiz_name">quickbooks.wizard_import_payroll_item</field>
+        </record>
+        <menuitem parent="account.menu_entries" action="wizard_import_payroll_item"
+            id="menu_wizard_import_payroll_item"/>
     </data>
 </tryton>

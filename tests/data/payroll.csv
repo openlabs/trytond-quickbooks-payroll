@@ -1,0 +1,6 @@
+Date,Num,Type,Source Name,Payroll Item,Wage Base,Amount
+04/01/2015,309333,Cash,"Pandey, Prakash",Salary Expense,,-100000
+,,,"Pandey, Prakash",Federal Income Taxes Payable,,15000
+,,,"Pandey, Prakash",State Income Taxes Payable,,5000
+,,,"Pandey, Prakash",FICA Taxes Payable,,7650
+,,,,,,72350
