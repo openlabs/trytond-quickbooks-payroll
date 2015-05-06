@@ -2,12 +2,11 @@
 """
     tests/test_quickbooks_payroll.py
 
-    :copyright: (C) 2014 by Openlabs Technologies & Consulting (P) Limited
+    :copyright: (C) 2015 by Openlabs Technologies & Consulting (P) Limited
     :license: BSD, see LICENSE for more details.
 """
-import os
-
-CWD = os.path.abspath(os.path.dirname(__file__))
+import csv
+import tempfile
 
 
 class TestQuickBooksPayroll:
@@ -26,6 +25,7 @@ class TestQuickBooksPayroll:
 
     def test_import_payroll_item(self, test_dataset, transaction):
         "Test import payroll item wizard"
+        Date = self.POOL.get('ir.date')
         Account = self.POOL.get('account.account')
         Move = self.POOL.get('account.move')
         Employee = self.POOL.get('company.employee')
@@ -71,8 +71,37 @@ class TestQuickBooksPayroll:
         )
 
         import_payroll_item.start.credit_account = main_cash
+
+        with tempfile.NamedTemporaryFile(delete=False) as csv_file:
+            csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
+            csv_writer.writerow([
+                'Date', 'Num', 'Type', 'Source Name', 'Payroll Item',
+                'Wage Base', 'Amount',
+            ])
+            csv_writer.writerow([
+                Date.today(), '309333', 'Cash', "Pandey, Prakash",
+                'Salary Expense', '', '-100000',
+            ])
+            csv_writer.writerow([
+                '', '', '', "Pandey, Prakash", 'Federal Income Taxes Payable',
+                '', 15000,
+
+            ])
+            csv_writer.writerow([
+                '', '', '', "Pandey, Prakash", 'State Income Taxes Payable',
+                '', 5000,
+
+            ])
+            csv_writer.writerow([
+                '', '', '', "Pandey, Prakash", 'FICA Taxes Payable', '', 7650,
+            ])
+            csv_writer.writerow([
+                '', '', '', '', '', '', 72350
+            ])
+            csv_file.flush()
+
         import_payroll_item.start.csv_file = \
-            buffer(open("%s/data/payroll.csv" % CWD).read())
+            buffer(open(csv_file.name).read())
 
         _, res = import_payroll_item.do_import_(action=None)
 
