@@ -165,15 +165,15 @@ class ImportPayrollItem(Wizard):
             else:
                 debit = abs(Decimal(row['Amount']))
 
-            if first_row['Source Name']:
+            if row['Source Name']:
                 move.lines.append(MoveLine(
                     account=self.get_quickbook_payroll_account(
-                        first_row['Payroll Item']
+                        row['Payroll Item']
                     ),
                     debit=debit,
                     credit=credit,
                     party=self.get_quickbook_source_name(
-                        first_row['Source Name']
+                        row['Source Name']
                     )
                 ))
             else:
